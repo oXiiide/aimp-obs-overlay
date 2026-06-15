@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start; /* прижать к левому краю */
+    align-items: center;
+    background: #111;
+    font-family: Arial, sans-serif;
+    padding-left: 20px; /* отступ слева */
+}
+
+.player-block {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.9);
+    padding: 20px 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    flex-shrink: 0; /* чтобы блок не сжимался */
+}
+
+
+.cover {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px; /* закругление обложки */
+    margin-right: 20px;
+    border: 1px solid #444;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.artist {
+    font-size: 18px;
+    color: #ccc;
+}
+</style>
+</head>
+<body>
+<div class="player-block">
+    <img id="cover" class="cover" src="cover.jpg" alt="cover">
+    <div class="text">
+        <div id="title" class="title">Unknown Title</div>
+        <div id="artist" class="artist">Unknown Artist</div>
+    </div>
+</div>
+
+<script>
+async function updateNowPlaying() {
+    try {
+        const img = document.getElementById('cover');
+        img.src = 'cover.jpg?t=' + Date.now();
+
+        const res = await fetch('track_info.txt');
+        const text = await res.text();
+        const lines = text.split('\n');
+        document.getElementById('artist').textContent = lines[0] || 'Unknown Artist';
+        document.getElementById('title').textContent = lines[1] || 'Unknown Title';
+    } catch(e) {
+        console.error(e);
+    }
+}
+
+setInterval(updateNowPlaying, 10000);
+updateNowPlaying();
+</script>
+</body>
+</html>
