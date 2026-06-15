@@ -15,3 +15,5 @@ Change path in start.bat
 ##### About
 
 Updates every 30 seconds
+
+![Now Playing Preview](image.png)
