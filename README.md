@@ -26,7 +26,7 @@ Open AIMP player and then start through bat
 
 A local URL will be generated after startup, running on `http://127.0.0.1:5000`
 
-### 4. Add to OBS
+### Add to OBS
 - Open OBS Studio
 - Add new source: Browser
 - Paste the generated URL into the Browser Source
@@ -37,7 +37,7 @@ The script reads current track information from AIMP and exposes it through a lo
 
 OBS displays this page as a browser overlay.
 
-Data refresh interval: 30 seconds
+Data refresh interval: 30 seconds (you can change it if needed, but on my opinion 30 seconds is enought for such program)
 
 ## Notes
 
